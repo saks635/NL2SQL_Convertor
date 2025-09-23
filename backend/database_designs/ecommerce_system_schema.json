@@ -1,0 +1,473 @@
+{
+  "name": "ecommerce_system",
+  "tables": [
+    {
+      "name": "customers",
+      "columns": [
+        {
+          "name": "id",
+          "data_type": "INTEGER",
+          "nullable": false,
+          "primary_key": true,
+          "foreign_key": null,
+          "unique": false,
+          "default_value": null,
+          "description": ""
+        },
+        {
+          "name": "email",
+          "data_type": "VARCHAR(255)",
+          "nullable": false,
+          "primary_key": false,
+          "foreign_key": null,
+          "unique": true,
+          "default_value": null,
+          "description": ""
+        },
+        {
+          "name": "first_name",
+          "data_type": "VARCHAR(100)",
+          "nullable": false,
+          "primary_key": false,
+          "foreign_key": null,
+          "unique": false,
+          "default_value": null,
+          "description": ""
+        },
+        {
+          "name": "last_name",
+          "data_type": "VARCHAR(100)",
+          "nullable": false,
+          "primary_key": false,
+          "foreign_key": null,
+          "unique": false,
+          "default_value": null,
+          "description": ""
+        },
+        {
+          "name": "phone",
+          "data_type": "VARCHAR(20)",
+          "nullable": true,
+          "primary_key": false,
+          "foreign_key": null,
+          "unique": false,
+          "default_value": null,
+          "description": ""
+        },
+        {
+          "name": "created_at",
+          "data_type": "TIMESTAMP",
+          "nullable": false,
+          "primary_key": false,
+          "foreign_key": null,
+          "unique": false,
+          "default_value": null,
+          "description": ""
+        },
+        {
+          "name": "updated_at",
+          "data_type": "TIMESTAMP",
+          "nullable": true,
+          "primary_key": false,
+          "foreign_key": null,
+          "unique": false,
+          "default_value": null,
+          "description": ""
+        }
+      ],
+      "primary_keys": [
+        "id"
+      ],
+      "foreign_keys": [],
+      "indexes": [],
+      "description": "Customer information"
+    },
+    {
+      "name": "categories",
+      "columns": [
+        {
+          "name": "id",
+          "data_type": "INTEGER",
+          "nullable": false,
+          "primary_key": true,
+          "foreign_key": null,
+          "unique": false,
+          "default_value": null,
+          "description": ""
+        },
+        {
+          "name": "name",
+          "data_type": "VARCHAR(100)",
+          "nullable": false,
+          "primary_key": false,
+          "foreign_key": null,
+          "unique": true,
+          "default_value": null,
+          "description": ""
+        },
+        {
+          "name": "description",
+          "data_type": "TEXT",
+          "nullable": true,
+          "primary_key": false,
+          "foreign_key": null,
+          "unique": false,
+          "default_value": null,
+          "description": ""
+        },
+        {
+          "name": "parent_id",
+          "data_type": "INTEGER",
+          "nullable": true,
+          "primary_key": false,
+          "foreign_key": "categories.id",
+          "unique": false,
+          "default_value": null,
+          "description": ""
+        }
+      ],
+      "primary_keys": [
+        "id"
+      ],
+      "foreign_keys": [
+        {
+          "source_column": "parent_id",
+          "target_table": "categories",
+          "target_column": "id"
+        }
+      ],
+      "indexes": [],
+      "description": "Product categories"
+    },
+    {
+      "name": "products",
+      "columns": [
+        {
+          "name": "id",
+          "data_type": "INTEGER",
+          "nullable": false,
+          "primary_key": true,
+          "foreign_key": null,
+          "unique": false,
+          "default_value": null,
+          "description": ""
+        },
+        {
+          "name": "name",
+          "data_type": "VARCHAR(200)",
+          "nullable": false,
+          "primary_key": false,
+          "foreign_key": null,
+          "unique": false,
+          "default_value": null,
+          "description": ""
+        },
+        {
+          "name": "description",
+          "data_type": "TEXT",
+          "nullable": true,
+          "primary_key": false,
+          "foreign_key": null,
+          "unique": false,
+          "default_value": null,
+          "description": ""
+        },
+        {
+          "name": "price",
+          "data_type": "DECIMAL(10,2)",
+          "nullable": false,
+          "primary_key": false,
+          "foreign_key": null,
+          "unique": false,
+          "default_value": null,
+          "description": ""
+        },
+        {
+          "name": "category_id",
+          "data_type": "INTEGER",
+          "nullable": true,
+          "primary_key": false,
+          "foreign_key": "categories.id",
+          "unique": false,
+          "default_value": null,
+          "description": ""
+        },
+        {
+          "name": "stock_quantity",
+          "data_type": "INTEGER",
+          "nullable": false,
+          "primary_key": false,
+          "foreign_key": null,
+          "unique": false,
+          "default_value": 0,
+          "description": ""
+        },
+        {
+          "name": "created_at",
+          "data_type": "TIMESTAMP",
+          "nullable": false,
+          "primary_key": false,
+          "foreign_key": null,
+          "unique": false,
+          "default_value": null,
+          "description": ""
+        },
+        {
+          "name": "updated_at",
+          "data_type": "TIMESTAMP",
+          "nullable": true,
+          "primary_key": false,
+          "foreign_key": null,
+          "unique": false,
+          "default_value": null,
+          "description": ""
+        }
+      ],
+      "primary_keys": [
+        "id"
+      ],
+      "foreign_keys": [
+        {
+          "source_column": "category_id",
+          "target_table": "categories",
+          "target_column": "id"
+        }
+      ],
+      "indexes": [],
+      "description": "Product catalog"
+    },
+    {
+      "name": "orders",
+      "columns": [
+        {
+          "name": "id",
+          "data_type": "INTEGER",
+          "nullable": false,
+          "primary_key": true,
+          "foreign_key": null,
+          "unique": false,
+          "default_value": null,
+          "description": ""
+        },
+        {
+          "name": "customer_id",
+          "data_type": "INTEGER",
+          "nullable": false,
+          "primary_key": false,
+          "foreign_key": "customers.id",
+          "unique": false,
+          "default_value": null,
+          "description": ""
+        },
+        {
+          "name": "order_date",
+          "data_type": "TIMESTAMP",
+          "nullable": false,
+          "primary_key": false,
+          "foreign_key": null,
+          "unique": false,
+          "default_value": null,
+          "description": ""
+        },
+        {
+          "name": "status",
+          "data_type": "VARCHAR(50)",
+          "nullable": false,
+          "primary_key": false,
+          "foreign_key": null,
+          "unique": false,
+          "default_value": null,
+          "description": ""
+        },
+        {
+          "name": "total_amount",
+          "data_type": "DECIMAL(10,2)",
+          "nullable": false,
+          "primary_key": false,
+          "foreign_key": null,
+          "unique": false,
+          "default_value": null,
+          "description": ""
+        },
+        {
+          "name": "shipping_address",
+          "data_type": "TEXT",
+          "nullable": true,
+          "primary_key": false,
+          "foreign_key": null,
+          "unique": false,
+          "default_value": null,
+          "description": ""
+        },
+        {
+          "name": "billing_address",
+          "data_type": "TEXT",
+          "nullable": true,
+          "primary_key": false,
+          "foreign_key": null,
+          "unique": false,
+          "default_value": null,
+          "description": ""
+        }
+      ],
+      "primary_keys": [
+        "id"
+      ],
+      "foreign_keys": [
+        {
+          "source_column": "customer_id",
+          "target_table": "customers",
+          "target_column": "id"
+        }
+      ],
+      "indexes": [],
+      "description": "Customer orders"
+    },
+    {
+      "name": "order_items",
+      "columns": [
+        {
+          "name": "id",
+          "data_type": "INTEGER",
+          "nullable": false,
+          "primary_key": true,
+          "foreign_key": null,
+          "unique": false,
+          "default_value": null,
+          "description": ""
+        },
+        {
+          "name": "order_id",
+          "data_type": "INTEGER",
+          "nullable": false,
+          "primary_key": false,
+          "foreign_key": "orders.id",
+          "unique": false,
+          "default_value": null,
+          "description": ""
+        },
+        {
+          "name": "product_id",
+          "data_type": "INTEGER",
+          "nullable": false,
+          "primary_key": false,
+          "foreign_key": "products.id",
+          "unique": false,
+          "default_value": null,
+          "description": ""
+        },
+        {
+          "name": "quantity",
+          "data_type": "INTEGER",
+          "nullable": false,
+          "primary_key": false,
+          "foreign_key": null,
+          "unique": false,
+          "default_value": null,
+          "description": ""
+        },
+        {
+          "name": "unit_price",
+          "data_type": "DECIMAL(10,2)",
+          "nullable": false,
+          "primary_key": false,
+          "foreign_key": null,
+          "unique": false,
+          "default_value": null,
+          "description": ""
+        },
+        {
+          "name": "total_price",
+          "data_type": "DECIMAL(10,2)",
+          "nullable": false,
+          "primary_key": false,
+          "foreign_key": null,
+          "unique": false,
+          "default_value": null,
+          "description": ""
+        }
+      ],
+      "primary_keys": [
+        "id"
+      ],
+      "foreign_keys": [
+        {
+          "source_column": "order_id",
+          "target_table": "orders",
+          "target_column": "id"
+        },
+        {
+          "source_column": "product_id",
+          "target_table": "products",
+          "target_column": "id"
+        }
+      ],
+      "indexes": [],
+      "description": "Individual items within orders"
+    }
+  ],
+  "relationships": [
+    {
+      "source_table": "customers",
+      "target_table": "orders",
+      "source_columns": [
+        "id"
+      ],
+      "target_columns": [
+        "customer_id"
+      ],
+      "relationship_type": "one-to-many",
+      "constraint_name": ""
+    },
+    {
+      "source_table": "categories",
+      "target_table": "products",
+      "source_columns": [
+        "id"
+      ],
+      "target_columns": [
+        "category_id"
+      ],
+      "relationship_type": "one-to-many",
+      "constraint_name": ""
+    },
+    {
+      "source_table": "categories",
+      "target_table": "categories",
+      "source_columns": [
+        "id"
+      ],
+      "target_columns": [
+        "parent_id"
+      ],
+      "relationship_type": "one-to-many",
+      "constraint_name": ""
+    },
+    {
+      "source_table": "orders",
+      "target_table": "order_items",
+      "source_columns": [
+        "id"
+      ],
+      "target_columns": [
+        "order_id"
+      ],
+      "relationship_type": "one-to-many",
+      "constraint_name": ""
+    },
+    {
+      "source_table": "products",
+      "target_table": "order_items",
+      "source_columns": [
+        "id"
+      ],
+      "target_columns": [
+        "product_id"
+      ],
+      "relationship_type": "one-to-many",
+      "constraint_name": ""
+    }
+  ],
+  "views": [],
+  "indexes": []
+}

@@ -1,0 +1,87 @@
+
+digraph ER_Diagram {
+    rankdir=TB;
+    node [shape=plaintext];
+    
+    // Title
+    title [label=<<B>ecommerce_system ER Diagram</B>>, shape=plaintext, fontsize=16];
+    
+
+    // Table: customers
+    customers [label=<
+        <TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0">
+            <TR><TD BGCOLOR="lightblue"><B>CUSTOMERS</B></TD></TR>
+            <TR><TD ALIGN="LEFT">id (INTEGER) [PK]</TD></TR>
+            <TR><TD ALIGN="LEFT">email (VARCHAR(255))</TD></TR>
+            <TR><TD ALIGN="LEFT">first_name (VARCHAR(100))</TD></TR>
+            <TR><TD ALIGN="LEFT">last_name (VARCHAR(100))</TD></TR>
+            <TR><TD ALIGN="LEFT">phone (VARCHAR(20))</TD></TR>
+            <TR><TD ALIGN="LEFT">created_at (TIMESTAMP)</TD></TR>
+            <TR><TD ALIGN="LEFT">updated_at (TIMESTAMP)</TD></TR>
+        </TABLE>
+    >];
+
+    // Table: categories
+    categories [label=<
+        <TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0">
+            <TR><TD BGCOLOR="lightblue"><B>CATEGORIES</B></TD></TR>
+            <TR><TD ALIGN="LEFT">id (INTEGER) [PK]</TD></TR>
+            <TR><TD ALIGN="LEFT">name (VARCHAR(100))</TD></TR>
+            <TR><TD ALIGN="LEFT">description (TEXT)</TD></TR>
+            <TR><TD ALIGN="LEFT">parent_id (INTEGER) [FK]</TD></TR>
+        </TABLE>
+    >];
+
+    // Table: products
+    products [label=<
+        <TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0">
+            <TR><TD BGCOLOR="lightblue"><B>PRODUCTS</B></TD></TR>
+            <TR><TD ALIGN="LEFT">id (INTEGER) [PK]</TD></TR>
+            <TR><TD ALIGN="LEFT">name (VARCHAR(200))</TD></TR>
+            <TR><TD ALIGN="LEFT">description (TEXT)</TD></TR>
+            <TR><TD ALIGN="LEFT">price (DECIMAL(10,2))</TD></TR>
+            <TR><TD ALIGN="LEFT">category_id (INTEGER) [FK]</TD></TR>
+            <TR><TD ALIGN="LEFT">stock_quantity (INTEGER)</TD></TR>
+            <TR><TD ALIGN="LEFT">created_at (TIMESTAMP)</TD></TR>
+            <TR><TD ALIGN="LEFT">updated_at (TIMESTAMP)</TD></TR>
+        </TABLE>
+    >];
+
+    // Table: orders
+    orders [label=<
+        <TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0">
+            <TR><TD BGCOLOR="lightblue"><B>ORDERS</B></TD></TR>
+            <TR><TD ALIGN="LEFT">id (INTEGER) [PK]</TD></TR>
+            <TR><TD ALIGN="LEFT">customer_id (INTEGER) [FK]</TD></TR>
+            <TR><TD ALIGN="LEFT">order_date (TIMESTAMP)</TD></TR>
+            <TR><TD ALIGN="LEFT">status (VARCHAR(50))</TD></TR>
+            <TR><TD ALIGN="LEFT">total_amount (DECIMAL(10,2))</TD></TR>
+            <TR><TD ALIGN="LEFT">shipping_address (TEXT)</TD></TR>
+            <TR><TD ALIGN="LEFT">billing_address (TEXT)</TD></TR>
+        </TABLE>
+    >];
+
+    // Table: order_items
+    order_items [label=<
+        <TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0">
+            <TR><TD BGCOLOR="lightblue"><B>ORDER_ITEMS</B></TD></TR>
+            <TR><TD ALIGN="LEFT">id (INTEGER) [PK]</TD></TR>
+            <TR><TD ALIGN="LEFT">order_id (INTEGER) [FK]</TD></TR>
+            <TR><TD ALIGN="LEFT">product_id (INTEGER) [FK]</TD></TR>
+            <TR><TD ALIGN="LEFT">quantity (INTEGER)</TD></TR>
+            <TR><TD ALIGN="LEFT">unit_price (DECIMAL(10,2))</TD></TR>
+            <TR><TD ALIGN="LEFT">total_price (DECIMAL(10,2))</TD></TR>
+        </TABLE>
+    >];
+
+    customers -> orders [label="one\nto\nmany"];
+
+    categories -> products [label="one\nto\nmany"];
+
+    categories -> categories [label="one\nto\nmany"];
+
+    orders -> order_items [label="one\nto\nmany"];
+
+    products -> order_items [label="one\nto\nmany"];
+
+}

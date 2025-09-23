@@ -1,0 +1,15 @@
+{
+  "first_normal_form": {
+    "compliant": true,
+    "violations": []
+  },
+  "second_normal_form": {
+    "compliant": true,
+    "violations": []
+  },
+  "third_normal_form": {
+    "compliant": true,
+    "violations": []
+  },
+  "recommendations": []
+}

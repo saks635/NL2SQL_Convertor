@@ -1,0 +1,44 @@
+# Core Flask Framework
+Flask==2.3.3
+Flask-Cors==4.0.0
+Werkzeug==2.3.7
+
+# Environment Management
+python-dotenv==1.0.0
+
+# AI/LLM Integration
+google-generativeai==0.3.2
+cohere==4.37
+
+# Database Connectivity
+SQLAlchemy==2.0.23
+PyMySQL==1.1.0
+pyodbc==4.0.39
+mysqlclient==2.2.0
+pymongo==4.6.0
+
+# Data Processing & Validation
+pandas==2.1.4
+numpy==1.25.2
+marshmallow==3.20.1
+
+# Testing Framework
+pytest==7.4.3
+pytest-cov==4.1.0
+pytest-mock==3.12.0
+
+# Development Tools
+black==23.11.0
+flake8==6.1.0
+isort==5.12.0
+
+# Security
+bcrypt==4.1.1
+PyJWT==2.8.0
+
+# Performance & Monitoring
+gunicorn==21.2.0
+redis==5.0.1
+
+# Documentation
+flasgger==0.9.7.1
